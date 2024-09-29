@@ -31,6 +31,7 @@ model Student {
 
   attendances Attendance[]
   results     Result[]
+  birthday    DateTime
 
   createdAt DateTime @default(now())
   grade     Grade    @relation(fields: [gradeId], references: [id])
@@ -38,22 +39,22 @@ model Student {
 }
 
 model Teacher {
-  id        String   @id
-  username  String   @unique
+  id        String    @id
+  username  String    @unique
   name      String
   surname   String
-  email     String?  @unique
-  phone     String?  @unique
+  email     String?   @unique
+  phone     String?   @unique
   address   String
   img       String?
   bloodType String
   sex       UserSex
-  createdAt DateTime @default(now())
-  subjects  Subject  @relation(fields: [subjectId], references: [id])
-  subjectId Int
+  createdAt DateTime  @default(now())
+  subjects  Subject[]
 
-  lessons Lesson[]
-  classes Class[]
+  lessons  Lesson[]
+  classes  Class[]
+  birthday DateTime
 }
 
 model Parent {
@@ -146,7 +147,7 @@ model Assignment {
 
 model Result {
   id    Int @id @default(autoincrement())
-  store Int
+  score Int
 
   exam         Exam?       @relation(fields: [examId], references: [id])
   examId       Int?
