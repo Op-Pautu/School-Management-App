@@ -28,6 +28,12 @@ const TableSearch = () => {
     updateSearchParams(value);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // Prevent the form from submitting
+    }
+  };
+
   useEffect(() => {
     return () => {
       updateSearchParams.cancel();
@@ -43,6 +49,7 @@ const TableSearch = () => {
         className="w-[200px] p-2 bg-transparent outline-none"
         value={searchValue}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
       />
     </form>
   );
